@@ -34,10 +34,6 @@ body {
 	align-items: center;
 }
 
-.items-stretch {
-	align-items: stretch;
-}
-
 .justify-center {
 	justify-content: center;
 }
@@ -46,8 +42,8 @@ body {
 	justify-content: space-between;
 }
 
-.justify-end {
-	justify-content: flex-end;
+.justify-evenly {
+	justify-content: space-evenly;
 }
 
 .gap-2 {
@@ -62,10 +58,6 @@ body {
 	gap: 2rem;
 }
 
-.min-h-screen {
-	min-height: 100vh;
-}
-
 .m-0 {
 	margin: 0;
 }
@@ -78,17 +70,35 @@ body {
 	padding: 1rem;
 }
 
-.w-quarter {
-	width: 25%;
+.matching-game__wrapper {
+	padding: 0 10%;
 }
 
-.mg-wrapper {
-	padding: 2rem;
+.matching-game__board {
+	gap: 2rem;
+}
+
+.matching-game__title {
+	font-family: Arcade;
+	font-size: 5rem;
+	max-height: 4rem;
+	background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.matching-game__instruction {
+	font-family: kidsplay;
+	font-size: 3rem;
+}
+
+.matching-game__timer {
+	font-family: Ds-DigiB;
+	font-size: 3rem;
 }
 
 .flip-card {
 	width: calc((100% - 8rem) / 5);
-	height: calc(100vw / 5);
 	perspective: 1000px;
 }
 
@@ -122,7 +132,7 @@ body {
 	transform: rotateY(180deg);
 }
 
-.card-back {
+.flip-card-back {
 	background-color: #e5e5f7;
 	opacity: 0.8;
 	background-image: linear-gradient(135deg, #444cf7 25%, transparent 25%), linear-gradient(225deg, #444cf7 25%, transparent 25%), linear-gradient(45deg, #444cf7 25%, transparent 25%), linear-gradient(315deg, #444cf7 25%, #e5e5f7 25%);
@@ -133,24 +143,60 @@ body {
 
 .flip-card-front-img {
 	height: calc(100% - 2rem);
+	padding: 1rem;
 }
 
-.matching-game__title {
-	font-family: Arcade;
-	font-size: 5rem;
-	background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+@media only screen and (max-width: 1200px) {
+	.flip-card {
+		height: calc(100vw / 5);
+	}
+	.matching-game__title {
+		font-size: 4rem;
+		max-height: 3rem;
+	}
+	.matching-game__instruction,
+	.matching-game__timer {
+		font-size: 3rem;
+	}
 }
 
-.matching-game__instruction {
-	font-family: kidsplay;
-	font-size: 3rem;
-	padding-left: 12rem;
+@media only screen and (min-width: 1201px) {
+	.flip-card {
+		height: calc(100vh / 3);
+	}
 }
 
-.matching-game__timer {
-	font-family: Ds-DigiB;
-	font-size: 3rem;
-	padding-right: 12rem;
+@media only screen and (max-width: 800px) {
+	.matching-game__wrapper {
+		padding: 0 5%;
+	}
+	.flip-card-front-img {
+		height: calc(100% - 2px);
+		padding: 2px;
+	}
+	.matching-game__title {
+		font-size: 3rem;
+		max-height: 2.25rem;
+	}
+	.matching-game__instruction,
+	.matching-game__timer {
+		font-size: 2.25rem;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.matching-game__board {
+		gap: 1rem;
+	}
+	.flip-card {
+		width: calc((100% - 4rem) / 5);
+	}
+	.matching-game__title {
+		font-size: 2rem;
+		max-height: 1.5rem;
+	}
+	.matching-game__instruction,
+	.matching-game__timer {
+		font-size: 1.5rem;
+	}
 }

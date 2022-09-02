@@ -28,12 +28,12 @@ const createCardElement = (src, alt, idx) => {
     const cardFront = document.createElement('div');
     cardFront.classList.add('flip-card-front');
     const cardBack = document.createElement('div');
-    cardBack.classList.add('flip-card-back', 'card-back');
+    cardBack.classList.add('flip-card-back');
     innerCard.appendChild(cardFront);
     innerCard.appendChild(cardBack);
 
     const cardFrontImgDiv = document.createElement('div');
-    cardFrontImgDiv.classList.add('flip-card-front-img', 'flex', 'items-center', 'p-4');
+    cardFrontImgDiv.classList.add('flip-card-front-img', 'flex', 'items-center');
     cardFront.appendChild(cardFrontImgDiv);
 
     const cardFrontImg = document.createElement('img');
@@ -41,10 +41,6 @@ const createCardElement = (src, alt, idx) => {
     cardFrontImg.src = src;
     cardFrontImg.alt = alt;
     cardFrontImgDiv.appendChild(cardFrontImg);
-
-    const cardBackBckgr = document.createElement('div');
-    cardBackBckgr.classList.add('card-back');
-    cardBack.appendChild(cardBackBckgr);
 
     board.appendChild(card);
 };
@@ -73,12 +69,12 @@ const resetImgs = () => {
     });
 }
 
-let currentFirstSelected = false;
+let isFirstSelected = false;
 let isBoardLocked = false;
 let firstSelectedCard, secondSelectedCard;
 
 const resetBoard = () => {
-    [currentFirstSelected, isBoardLocked] = [false, false];
+    [isFirstSelected, isBoardLocked] = [false, false];
     [firstSelectedCard, secondSelectedCard] = [null, null];
     if (cardImgIds.length === cardImgNames.length) {
         cardImgIds = [];
@@ -112,8 +108,8 @@ function flipCard() {
     if (!isBoardLocked && this !== firstSelectedCard) {
         this.classList.add('rotate');
 
-        if (!currentFirstSelected) {
-            currentFirstSelected = true;
+        if (!isFirstSelected) {
+            isFirstSelected = true;
             firstSelectedCard = this;
         } else {
             secondSelectedCard = this;
