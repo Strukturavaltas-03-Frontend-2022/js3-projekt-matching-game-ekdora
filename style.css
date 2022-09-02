@@ -13,7 +13,6 @@
 	src: url("assets/fonts/ds_digital/DS-DIGIB.ttf");
 }
 
-
 body {
 	margin: 0;
 }
@@ -38,36 +37,12 @@ body {
 	justify-content: center;
 }
 
-.justify-between {
-	justify-content: space-between;
-}
-
 .justify-evenly {
 	justify-content: space-evenly;
 }
 
-.gap-2 {
-	gap: 0.5rem;
-}
-
 .gap-4 {
 	gap: 1rem;
-}
-
-.gap-8 {
-	gap: 2rem;
-}
-
-.m-0 {
-	margin: 0;
-}
-
-.m-4 {
-	margin: 1rem;
-}
-
-.p-4 {
-	padding: 1rem;
 }
 
 .matching-game__wrapper {
@@ -133,11 +108,9 @@ body {
 }
 
 .flip-card-back {
-	background-color: #e5e5f7;
-	opacity: 0.8;
-	background-image: linear-gradient(135deg, #444cf7 25%, transparent 25%), linear-gradient(225deg, #444cf7 25%, transparent 25%), linear-gradient(45deg, #444cf7 25%, transparent 25%), linear-gradient(315deg, #444cf7 25%, #e5e5f7 25%);
-	background-position: 10px 0, 10px 0, 0 0, 0 0;
-	background-size: 10px 10px;
+	background: radial-gradient(1.5em 6.28571em at 1.95em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 0 0, radial-gradient(1.5em 6.28571em at -0.45em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 1.5em 5.5em, radial-gradient(2.3em 4.57143em at 2.99em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 55%, rgba(255, 255, 255, 0) 55%) 0 0, radial-gradient(2.3em 4.57143em at -0.69em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 55%, rgba(255, 255, 255, 0) 55%) 2.3em 4em, radial-gradient(3.5em 6.28571em at 4.55em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 0 0, radial-gradient(3.5em 6.28571em at -1.05em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 3.5em 5.5em, radial-gradient(#15ffa5, #00ced1);
+	background-color: mediumspringgreen;
+	background-size: 1.5em 11em, 1.5em 11em, 2.3em 8em, 2.3em 8em, 3.5em 11em, 3.5em 11em, 100% 100%;
 	background-repeat: repeat;
 }
 
@@ -150,10 +123,12 @@ body {
 	.flip-card {
 		height: calc(100vw / 5);
 	}
+
 	.matching-game__title {
 		font-size: 4rem;
 		max-height: 3rem;
 	}
+
 	.matching-game__instruction,
 	.matching-game__timer {
 		font-size: 3rem;
@@ -170,14 +145,17 @@ body {
 	.matching-game__wrapper {
 		padding: 0 5%;
 	}
+
 	.flip-card-front-img {
 		height: calc(100% - 2px);
 		padding: 2px;
 	}
+
 	.matching-game__title {
 		font-size: 3rem;
 		max-height: 2.25rem;
 	}
+
 	.matching-game__instruction,
 	.matching-game__timer {
 		font-size: 2.25rem;
@@ -188,13 +166,16 @@ body {
 	.matching-game__board {
 		gap: 1rem;
 	}
+
 	.flip-card {
 		width: calc((100% - 4rem) / 5);
 	}
+
 	.matching-game__title {
 		font-size: 2rem;
 		max-height: 1.5rem;
 	}
+
 	.matching-game__instruction,
 	.matching-game__timer {
 		font-size: 1.5rem;
