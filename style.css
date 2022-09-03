@@ -58,6 +58,7 @@ body {
 	font-size: 5rem;
 	max-height: 4rem;
 	background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+	background-clip: text;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
@@ -68,6 +69,7 @@ body {
 }
 
 .matching-game__timer {
+	width: 7rem;
 	font-family: Ds-DigiB;
 	font-size: 3rem;
 }
@@ -160,6 +162,9 @@ body {
 	.matching-game__timer {
 		font-size: 2.25rem;
 	}
+	.matching-game__timer {
+		width: 5.25rem;
+	}
 }
 
 @media only screen and (max-width: 600px) {
@@ -175,9 +180,11 @@ body {
 		font-size: 2rem;
 		max-height: 1.5rem;
 	}
-
 	.matching-game__instruction,
 	.matching-game__timer {
 		font-size: 1.5rem;
+	}
+	.matching-game__timer {
+		width: 3.5rem;
 	}
 }

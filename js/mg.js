@@ -16,7 +16,7 @@ const shuffle = (array) => {
     }
 
     return array;
-}
+};
 
 const createCardElement = (src, alt, idx) => {
     const card = document.createElement('div');
@@ -50,44 +50,76 @@ cardImgNames.forEach((cardImgName, idx) => {
     createCardElement(`assets/images/${cardImgName}.svg`, cardImgName, idx);
 });
 
-
 const allImg = document.querySelectorAll(`[id^='${imgIdPrefix}']`);
 const cards = document.querySelectorAll('.flip-card-inner');
+
+const oneSec = 1000;
+let expectedDelay = Date.now() + oneSec;
+let seconds = 0;
+let minutes = 0;
+let isGameRunning = false;
+let isFirstSelected = false;
+let isBoardLocked = false;
+let firstSelectedCard, secondSelectedCard;
+
+const timer = document.querySelector('.matching-game__timer');
+
+const setTimer = () => {
+    timer.innerHTML = `${minutes > 9 ? minutes : `0${minutes}`}:${seconds > 9 ? seconds : `0${seconds}`}`;
+};
+setTimer();
+
+const scheduler = () => {
+    const delta = Date.now() - expectedDelay;
+
+    if (minutes !== 59 || (minutes === 59 && seconds !== 59)) {
+        ++seconds;
+        if (seconds === 60) {
+            ++minutes;
+            seconds = 0;
+        }
+        setTimer();
+    }
+
+    expectedDelay += oneSec;
+
+    if (isGameRunning) {
+        setTimeout(scheduler, Math.max(0, oneSec - delta));
+    }
+};
 
 const resetCards = () => {
     cards.forEach(card => {
         card.classList.remove('rotate');
     });
     shuffle(cardImgNames);
+    timer.innerHTML = '00:00';
     setTimeout(() => { resetImgs(); addClickEventToCards(); }, 100);
-}
+};
 
 const resetImgs = () => {
     allImg.forEach((img, idx) => {
         img.src = `assets/images/${cardImgNames[idx]}.svg`;
         img.alt = cardImgNames[idx];
     });
-}
-
-let isFirstSelected = false;
-let isBoardLocked = false;
-let firstSelectedCard, secondSelectedCard;
+};
 
 const resetBoard = () => {
     [isFirstSelected, isBoardLocked] = [false, false];
     [firstSelectedCard, secondSelectedCard] = [null, null];
     if (cardImgIds.length === cardImgNames.length) {
+        isGameRunning = false;
         cardImgIds = [];
         setTimeout(resetCards, 5000);
     }
-}
+};
 
 const disablePair = (firstCard, secondCard) => {
     firstSelectedCard.removeEventListener('click', flipCard);
     secondSelectedCard.removeEventListener('click', flipCard);
     cardImgIds.push(firstCard.id, secondCard.id);
     resetBoard();
-}
+};
 
 const unflipLastTwoCards = () => {
     isBoardLocked = true;
@@ -96,19 +128,25 @@ const unflipLastTwoCards = () => {
         secondSelectedCard.classList.remove('rotate');
         resetBoard();
     }, 1000);
-}
+};
 
 const checkForMatch = () => {
     const firstCard = firstSelectedCard.querySelector(`[id^='${imgIdPrefix}']`);
     const secondCard = secondSelectedCard.querySelector(`[id^='${imgIdPrefix}']`);
     firstCard.alt === secondCard.alt ? disablePair(firstCard, secondCard) : unflipLastTwoCards();
-}
+};
 
 function flipCard() {
     if (!isBoardLocked && this !== firstSelectedCard) {
         this.classList.add('rotate');
 
         if (!isFirstSelected) {
+            if (!isGameRunning) {
+                isGameRunning = true;
+                seconds = 0;
+                expectedDelay = Date.now() + oneSec;
+                setTimeout(scheduler, oneSec);
+            }
             isFirstSelected = true;
             firstSelectedCard = this;
         } else {
@@ -122,6 +160,6 @@ const addClickEventToCards = () => {
     cards.forEach(card => {
         card.addEventListener('click', flipCard);
     });
-}
+};
 
 addClickEventToCards();
