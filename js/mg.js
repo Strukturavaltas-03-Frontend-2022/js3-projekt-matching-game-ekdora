@@ -144,6 +144,7 @@ function flipCard() {
             if (!isGameRunning) {
                 isGameRunning = true;
                 seconds = 0;
+                minutes = 0;
                 expectedDelay = Date.now() + oneSec;
                 setTimeout(scheduler, oneSec);
             }
